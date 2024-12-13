@@ -1,0 +1,49 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.vertical-scrollbar,
+.zero-size-vertical-scrollbar {
+  overflow-y: scroll;
+}
+
+.horizontal-scrollbar,
+.zero-size-horizontal-scrollbar {
+  overflow-x: scroll;
+}
+
+.zero-size-vertical-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.zero-size-horizontal-scrollbar::-webkit-scrollbar {
+  height: 0px;
+}
+
+.vertical-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  background-color: rgba(97, 97, 97, 0.2);
+  border-radius: 20px;
+}
+
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  background-color: rgba(97, 97, 97, 0.2);
+  border-radius: 20px;
+}
+
+.horizontal-scrollbar::-webkit-scrollbar-thumb,
+.vertical-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #616161;
+  border-radius: 20px;
+}

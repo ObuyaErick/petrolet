@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # nest-petrolet:
+  #   build:
+  #     context: nest-petrolet
+  #     dockerfile: Dockerfile
+  #   container_name: nest_petrolet
+  #   depends_on:
+  #     - mysql_db
+  #   ports:
+  #     - "5000:3000"
+  #   environment:
+  #     - VUE_FRONTEND=http://localhost:4001
+  #     - DATABASE_URL=postgresql://user_petrolet:password_petrolet@postgres_db:3306/db_petrolet
+  #     - JWT_SECRET="xa5FKG7rDZLX8CKnmMktLp4ljuZqGGzQBBAF5eCW9hwKAR5Gibs4ucivymaZTdihVMaSVKQ+ToYECC3EL+Qa0w=="
+  #     - PORT=3000
+  #   networks:
+  #     - dev_petrolet_network
+
+  # v-petrolet:
+  #   build:
+  #     context: v-petrolet
+  #     dockerfile: Dockerfile
+  #   container_name: v_petrolet
+  #   depends_on:
+  #     - nest-petrolet
+  #   ports:
+  #     - "4001:80"
+  #   networks:
+  #     - dev_petrolet_network
+
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: rabbitmq
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   volumes:
+  #     - rabbitmq_data:/var/lib/rabbitmq
+
+  # redis:
+  #   build:
+  #     context: infrastructure_services/redis
+  #     dockerfile: Dockerfile
+  #   container_name: dev_redis_petrolet
+  #   environment:
+  #     REDIS_PASSWORD: redis_password
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - dev_petrolet_network
+
+
+  postgres_db:
+    build:
+      context: infrastructure_services/postgres
+      dockerfile: Dockerfile
+    container_name: dev_postgres_petrolet
+    environment:
+      POSTGRES_DB: db_petrolet
+      POSTGRES_USER: user_petrolet
+      POSTGRES_PASSWORD: password_petrolet
+    ports:
+      - "5434:5432"
+    # volumes:
+    #   - postgres-data:/var/lib/postgresql/data
+    networks:
+      - dev_petrolet_network
+
+networks:
+  dev_petrolet_network: {}
+
+# volumes:
+#   postgres-data:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: ./infrastructure_services/db/postgres/data
