@@ -12,10 +12,14 @@ declare module 'vue' {
     ApplicationBar: typeof import('./components/dashboard/ApplicationBar.vue')['default']
     BottomNavigationBar: typeof import('./components/dashboard/BottomNavigationBar.vue')['default']
     DisplayObject: typeof import('./components/DisplayObject.vue')['default']
+    HeaderBar: typeof import('./components/home/HeaderBar.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    HeroSection: typeof import('./components/home/HeroSection.vue')['default']
     HomePage: typeof import('./components/home/HomePage.vue')['default']
     LeftNavigationDrawer: typeof import('./components/dashboard/LeftNavigationDrawer.vue')['default']
+    QuickCarTypes: typeof import('./components/home/QuickCarTypes.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WhyChooseUs: typeof import('./components/home/WhyChooseUs.vue')['default']
   }
 }

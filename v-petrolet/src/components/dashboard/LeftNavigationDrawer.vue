@@ -6,8 +6,8 @@
     @click="emit('toggle-drawer')"
   >
     <div class="flex h-full">
-      <div>
-        <div class="border-b p-3">
+      <div class="flex flex-col">
+        <div class="p-3">
           <v-icon color="primary" icon="$vuetify" size="30"></v-icon>
         </div>
 
@@ -32,6 +32,13 @@
 
             <span>{{ item }}</span>
           </v-tooltip>
+        </div>
+        <v-spacer></v-spacer>
+        <div class="flex items-center justify-center p-2">
+          <v-avatar
+            size="small"
+            image="https://randomuser.me/api/portraits/women/81.jpg"
+          ></v-avatar>
         </div>
       </div>
 
