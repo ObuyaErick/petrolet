@@ -13,8 +13,8 @@
     </div>
 
     <div class="flex gap-2">
-      <v-carousel :height="400" color="primary">
-        <v-carousel-item class="" v-for="t in filters.Makes.slice(0,4)">
+      <v-carousel cycle hide-delimiter-background :height="400">
+        <v-carousel-item cover class="" v-for="t in filters.Makes.slice(0, 4)">
           <v-icon>mdi-truck-outline</v-icon>
           <span>{{ t }}</span>
         </v-carousel-item>

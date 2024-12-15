@@ -12,10 +12,10 @@
         v-for="({ title, desc, icon }, index) in values"
       >
         <div>
-          <v-icon>{{ icon }}</v-icon>
+          <v-icon size="large">{{ icon }}</v-icon>
         </div>
-        <h4>{{ title }}</h4>
-        <div>{{ desc }}</div>
+        <h4 class="my-1">{{ title }}</h4>
+        <div class="text-secondary">{{ desc }}</div>
       </div>
     </div>
   </div>
@@ -23,24 +23,24 @@
 <script setup lang="ts">
 const values = [
   {
-    icon: "",
+    icon: "mdi-currency-usd",
     title: "Special Financing Offers",
-    desc: "",
+    desc: "Get access to exclusive financing deals with low-interest rates and flexible payment terms.",
   },
   {
-    icon: "",
+    icon: "mdi-shield-check-outline",
     title: "Trusted Car Dealership",
-    desc: "",
+    desc: "We pride ourselves on being a dealership you can trust for quality vehicles and honest service.",
   },
   {
-    icon: "",
+    icon: "mdi-cash-multiple",
     title: "Transparent Pricing",
-    desc: "",
+    desc: "No hidden fees or surprises. Every car comes with a clear and upfront price tag.",
   },
   {
-    icon: "",
+    icon: "mdi-wrench-outline",
     title: "Expert Car Service",
-    desc: "",
+    desc: "Our certified technicians ensure your car gets the best care and maintenance.",
   },
 ];
 </script>

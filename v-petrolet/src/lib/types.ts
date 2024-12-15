@@ -75,3 +75,18 @@ export interface Paginated {
   pageNumber: number;
   pageSize: number;
 }
+
+export interface CarListing extends Entity, TimeStamps {
+  title: string;
+  description: string;
+  price: number;
+  location: string;
+  make: string;
+  model: string;
+  year: number;
+  mileage: number;
+  transmission: string;
+  fuelType: string;
+  condition: string;
+  color: string;
+}

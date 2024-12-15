@@ -4,6 +4,8 @@
       <!-- Header Bar -->
       <header-bar class="container mx-auto"></header-bar>
 
+      <filter-form></filter-form>
+
       <!-- Hero Section -->
       <hero-section class="container mx-auto"></hero-section>
 
@@ -19,7 +21,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                src="http://localhost:4002/kali-light.png"
+                :src="`http://localhost:4002/cars/${carImages[0]}`"
               ></v-img>
             </div>
             <div class="h-32 w-[75%]">
@@ -27,7 +29,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                src="http://localhost:4002/kali-light.png"
+                :src="`http://localhost:4002/cars/${carImages[1]}`"
               ></v-img>
             </div>
           </div>
@@ -37,7 +39,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                src="http://localhost:4002/kali-light.png"
+                :src="`http://localhost:4002/cars/${carImages[2]}`"
               ></v-img>
             </div>
           </div>
@@ -138,7 +140,7 @@
           <v-card
             elevation="5"
             rounded="xl"
-            image="http://localhost:4002/kali-light.png"
+            :image="`http://localhost:4002/cars/${carImages[8]}`"
           >
             <v-card-text class="text-white pa-12 bg-black/50">
               <h3 class="capitalize text-xl font-semibold">
@@ -164,7 +166,7 @@
           <v-card
             elevation="5"
             rounded="xl"
-            image="http://localhost:4002/kali-light.png"
+            :image="`http://localhost:4002/cars/${carImages[9]}`"
           >
             <v-card-text class="text-white pa-12 bg-black/50">
               <h3 class="capitalize text-xl font-semibold">
@@ -245,7 +247,7 @@
                 <v-img
                   height="150"
                   cover
-                  src="http://localhost:4002/kali-light.png"
+                  :src="`http://localhost:4002/cars/${carImages[9 + i]}`"
                 ></v-img>
                 <v-card-title>Toyota Camry New</v-card-title>
                 <v-card-subtitle
@@ -285,6 +287,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import { carImages } from "@/lib/data";
+
 const exploreTab = ref(null);
 const dataPoints = {
   "Cars for sale": "869M",

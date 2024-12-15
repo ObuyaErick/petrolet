@@ -53,3 +53,35 @@ model OneTimePassword {
   value     String    @unique
   createdAt DateTime  @default(now())
 }
+
+model Listing {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  price         Float
+  location      String
+  make          String
+  model         String
+  year          Int
+  mileage       Int
+  fuelType      String
+  transmission  String
+  condition     String   // e.g., "New", "Used"
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  images        ListingImage[]
+}
+
+
+model Review {
+  id        String   @id @default(cuid())
+  content   String
+  rating    Int      @default(5) // e.g., 1-5
+  reviewerId String
+  reviewer   User     @relation("ReviewReviewer", fields: [reviewerId], references: [id])
+  sellerId  String
+  seller    User     @relation("ReviewSeller", fields: [sellerId], references: [id])
+  createdAt DateTime @default(now())
+}

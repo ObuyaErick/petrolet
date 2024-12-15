@@ -11,7 +11,10 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     ApplicationBar: typeof import('./components/dashboard/ApplicationBar.vue')['default']
     BottomNavigationBar: typeof import('./components/dashboard/BottomNavigationBar.vue')['default']
+    CarInventory: typeof import('./components/inventory/CarInventory.vue')['default']
+    CarInventoryListingItem: typeof import('./components/inventory/CarInventoryListingItem.vue')['default']
     DisplayObject: typeof import('./components/DisplayObject.vue')['default']
+    FilterForm: typeof import('./components/FilterForm.vue')['default']
     HeaderBar: typeof import('./components/home/HeaderBar.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HeroSection: typeof import('./components/home/HeroSection.vue')['default']
@@ -20,6 +23,7 @@ declare module 'vue' {
     QuickCarTypes: typeof import('./components/home/QuickCarTypes.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SwiperTest: typeof import('./components/SwiperTest.vue')['default']
     WhyChooseUs: typeof import('./components/home/WhyChooseUs.vue')['default']
   }
 }

@@ -4,6 +4,13 @@
       <div class="flex flex-col px-4 py-16 gap-4 items-center">
         <v-label>We make finding the right car simple</v-label>
         <h1 class="text-4xl md:text-5xl">Search Less. Live More.</h1>
+        <p class="text-lg mb-6 max-w-lg z-40">
+          Whether you're looking to buy or sell, our platform connects you with
+          trusted dealers and buyers. Explore a wide range of cars at your
+          fingertips, from family-friendly sedans to rugged off-road vehicles.
+          Enjoy a seamless, secure experience backed by exclusive deals and
+          transparent pricing. Start your journey now!
+        </p>
         <div class="flex items-center gap-3">
           <v-btn
             size="large"
