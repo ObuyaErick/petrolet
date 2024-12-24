@@ -17,8 +17,8 @@
             <v-icon color="primary">mdi-music-accidental-sharp</v-icon>
             <span>{{ carListingItem.title }}</span>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 my-2 border">
-            <div class="text-sm px-2 py-1.5 border">
+          <div class="grid grid-cols-2 md:grid-cols-4 my-2 border-t border-e">
+            <div class="text-sm px-2 py-1.5 border-b border-s">
               <div class="flex items-start gap-1.5">
                 <v-icon color="primary" size="small">mdi-details</v-icon>
                 <v-label>Description</v-label>
@@ -28,46 +28,64 @@
               </div>
             </div>
 
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-icon color="primary">mdi-map-marker-outline</v-icon>
               <v-label>Location:</v-label>
               <span>{{ carListingItem.location }}</span>
             </div>
-            <div class="text-sm px-2 py-1.5 border">
+            <div class="text-sm px-2 py-1.5 border-b border-s">
               <span><v-label>Make:</v-label> {{ carListingItem.make }}</span>
               :
               <span><v-label>Model:</v-label> {{ carListingItem.model }}</span>
             </div>
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-icon color="primary">mdi-gas-station-outline</v-icon>
               <span>{{ carListingItem.fuelType }}</span>
             </div>
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-icon color="primary">mdi-car-shift-pattern</v-icon>
               <v-label>Transmission:</v-label>
               <span>{{ carListingItem.transmission }}</span>
             </div>
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-icon color="primary">mdi-car-speed-limiter</v-icon>
               <v-label>Mileage:</v-label>
               <span>{{ carListingItem.mileage }} miles</span>
             </div>
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-icon color="primary">mdi-calendar-month</v-icon>
               <v-label>Year:</v-label>
               <span>{{ carListingItem.year }}</span>
             </div>
-            <div class="text-sm flex items-start gap-1.5 px-2 py-1.5 border">
+            <div
+              class="text-sm flex items-start gap-1.5 px-2 py-1.5 border-b border-s"
+            >
               <v-label>Color: </v-label>
               <span>{{ carListingItem.color }}</span>
             </div>
           </div>
           <div>
-            <v-chip prepend-icon="mdi-currency-usd"
-              ><span class="font-extrabold">{{
-                carListingItem.price
-              }}</span></v-chip
-            >
+            <v-chip class="px-4">
+              <div class="flex items-center gap-1 text-medium-emphasis">
+                <span>
+                  <v-label>price: </v-label>
+                  <v-icon>mdi-currency-usd</v-icon>
+                </span>
+                <span class="font-extrabold text-lg">{{
+                  carListingItem.price
+                }}</span>
+              </div>
+            </v-chip>
           </div>
         </div>
       </v-tabs-window-item>
@@ -75,8 +93,18 @@
         <div>
           <div class="p-2">
             <Swiper
+              free-mode
+              mousewheel
+              loop
+              effect="cover-flow"
               ref="gallery-swiper"
-              :modules="[Navigation, Pagination]"
+              :modules="[
+                Navigation,
+                Pagination,
+                FreeMode,
+                Mousewheel,
+                EffectCoverflow,
+              ]"
               :slides-per-view="3"
               :space-between="20"
               :pagination="{ clickable: true }"
@@ -117,7 +145,13 @@
 <script setup lang="ts">
 import { carImages } from "@/lib/data";
 import type { CarListing } from "@/lib/types";
-import { Navigation, Pagination } from "swiper/modules";
+import {
+  EffectCoverflow,
+  FreeMode,
+  Mousewheel,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 const tab = ref<string | null>(null);

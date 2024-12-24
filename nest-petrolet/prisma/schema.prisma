@@ -27,6 +27,9 @@ model User {
 
   userRoles         UserRole[]
   oneTimePasswords  OneTimePassword[]
+  sellerReviews     SellerReview[]
+  listingReviews    ListingReview[]
+  sellers           Seller[]
 }
 
 model Role {
@@ -67,21 +70,73 @@ model Listing {
   fuelType      String
   transmission  String
   condition     String   // e.g., "New", "Used"
-  userId        String
-  user          User     @relation(fields: [userId], references: [id])
+  color         String
+
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  images        ListingImage[]
+
+  images          ListingImage[]
+  reviews         ListingReview[]
 }
 
-
-model Review {
+model ListingImage {
   id        String   @id @default(cuid())
-  content   String
-  rating    Int      @default(5) // e.g., 1-5
-  reviewerId String
-  reviewer   User     @relation("ReviewReviewer", fields: [reviewerId], references: [id])
+
+  url       String
+
+  listingId  String
+  listing    Listing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+model ListingReview {
+  id          String   @id @default(cuid())
+  content     String
+  rating      Int      @default(1) // e.g., 1-5
+
+  listingId  String
+  listing    Listing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  reviewerId  String
+  reviewer    User     @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Seller {
+  id          String   @id @default(cuid())
+
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  reviews   SellerReview[]
+  profiles   SellerProfile[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model SellerReview {
+  id          String   @id @default(cuid())
+  content     String
+  rating      Int      @default(1) // e.g., 1-5
+
   sellerId  String
-  seller    User     @relation("ReviewSeller", fields: [sellerId], references: [id])
-  createdAt DateTime @default(now())
+  seller    Seller     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  reviewerId  String
+  reviewer    User     @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model SellerProfile {
+  id          String      @id @default(cuid())
+
+  sellerId    String      @unique
+  seller      Seller      @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

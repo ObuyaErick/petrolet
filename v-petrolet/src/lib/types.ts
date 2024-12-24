@@ -71,9 +71,40 @@ export const loginSchema = Joi.object({
     .messages({ "string.min": "Weak password" }),
 });
 
+export interface PetroletRange {
+  start: string | number;
+  end: string | number;
+}
+
+export function initPetroletRange(init: string | number = ""): PetroletRange {
+  return {
+    start: init,
+    end: init,
+  };
+}
+
+export type SortOrder = "asc" | "desc";
+
+export interface SortRequest {
+  key: string;
+  order?: SortOrder;
+}
+
+export interface VDataLoaderProps {
+  page?: number;
+  itemsPerPage?: number;
+  sortBy?: { key: string; order?: SortOrder }[];
+}
+
+export interface GroupByItem {
+  title: string;
+  key: string;
+}
+
 export interface Paginated {
-  pageNumber: number;
-  pageSize: number;
+  page: number;
+  limit: number;
+  total: number;
 }
 
 export interface CarListing extends Entity, TimeStamps {

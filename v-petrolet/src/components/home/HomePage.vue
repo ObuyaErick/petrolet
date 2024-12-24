@@ -4,8 +4,6 @@
       <!-- Header Bar -->
       <header-bar class="container mx-auto"></header-bar>
 
-      <filter-form></filter-form>
-
       <!-- Hero Section -->
       <hero-section class="container mx-auto"></hero-section>
 

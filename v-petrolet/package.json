@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "@tanstack/vue-query": "^5.62.8",
     "@tresjs/cientos": "^4.0.3",
     "@tresjs/core": "^4.3.1",
     "axios": "^1.7.9",
     "core-js": "^3.37.1",
     "echarts": "^5.5.1",
+    "gsap": "^3.12.5",
     "joi": "^17.13.3",
     "jwt-decode": "^4.0.0",
     "roboto-fontface": "*",

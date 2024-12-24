@@ -20,10 +20,14 @@ declare module 'vue' {
     HeroSection: typeof import('./components/home/HeroSection.vue')['default']
     HomePage: typeof import('./components/home/HomePage.vue')['default']
     LeftNavigationDrawer: typeof import('./components/dashboard/LeftNavigationDrawer.vue')['default']
+    PetroletBox: typeof import('./components/tres/PetroletBox.vue')['default']
     QuickCarTypes: typeof import('./components/home/QuickCarTypes.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SwiperTest: typeof import('./components/SwiperTest.vue')['default']
+    TresLab: typeof import('./components/TresLab.vue')['default']
+    UgglyBunny: typeof import('./components/tres/UglyBunny.vue')['default']
+    UglyBunny: typeof import('./components/tres/UglyBunny.vue')['default']
     WhyChooseUs: typeof import('./components/home/WhyChooseUs.vue')['default']
   }
 }

@@ -1,11 +1,19 @@
 import { insertQueryParams } from "./utils";
 
 const URL_HEAD: string = import.meta.env.VITE_SERVER_HOST;
-
 interface APIDefinition {
   path: string;
   params?: string[];
 }
+
+// Pagination Keys
+const pageable = ["page?", "limit?"] as const;
+// Ordering key
+const sortable = ["order?"] as const;
+// Search Key
+const searchable = ["search?"] as const;
+// Filters Key
+const filterable = ["filter?"] as const;
 
 /*
  * Server APIS object
@@ -29,6 +37,14 @@ const APIS = {
   "USER-CHECK-UNIQUE-EXISTENCE": {
     path: "/users/check/unique-existence",
   },
+
+  /* ------- LISTINGS ------- */
+  "LISTINGS-INDEX": {
+    path: "/listings",
+    params: [...pageable, ...sortable, ...searchable, ...filterable],
+  },
+  "LISTINGS-SHOW": { path: "/listings/:listingId", params: ["listingId"] },
+  "LISTINGS-CREATE": { path: "/listings/create" },
 } as const;
 
 // APIS object keys
@@ -45,6 +61,23 @@ type ParseParams<P extends readonly string[]> = P extends readonly [
     : Record<Head & string, string | number> &
         ParseParams<Tail extends string[] ? Tail : []>
   : {};
+
+// Detect if all keys of a Record are optional
+export type AllKeysAreOptional<T> = keyof T extends never
+  ? true // No keys in the Record
+  : {
+      [K in keyof T]: T extends Record<K, T[K]>
+        ? T[K] extends undefined
+          ? true
+          : false
+        : true;
+    } extends { [K in keyof T]: true }
+  ? true
+  : false;
+
+// Detect if all params are optional
+export type AllParamsAreOptional<P extends readonly string[]> =
+  P extends `${string}?`[] ? true : false;
 
 // Build Params
 type BuildParams<T extends APIKey> = T extends APIKey
@@ -68,7 +101,11 @@ export class ApiBuilder<T extends APIKey> {
   }
 
   build(
-    params: BuildParams<T> extends undefined ? void : BuildParams<T>
+    params: BuildParams<T> extends undefined
+      ? void
+      : AllKeysAreOptional<BuildParams<T>> extends true
+      ? BuildParams<T> | void
+      : BuildParams<T>
   ): string {
     const baseUrl = `${URL_HEAD}${this.#path}`;
     const apiDefinition: APIDefinition = APIS[this.#apiKey] as APIDefinition;

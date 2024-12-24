@@ -16,6 +16,8 @@ import { RolesGuard } from './auth/authorization/roles.guard';
 import { PasswordService } from './password/password.service';
 import { AuthenticationGuard } from './auth/authentication/authentication.guard';
 import { RolesModule } from './roles/roles.module';
+import { ListingsModule } from './listings/listings.module';
+import { MpesaModule } from './mpesa/mpesa.module';
 
 @Module({
   imports: [
@@ -67,6 +69,8 @@ import { RolesModule } from './roles/roles.module';
     AuthorizationModule,
     MailModule,
     RolesModule,
+    ListingsModule,
+    MpesaModule,
   ],
   controllers: [AppController],
   providers: [
