@@ -9,7 +9,7 @@
   </TresMesh>
 </template>
 <script setup lang="ts">
-import { useTexture, useRenderLoop, type Intersection } from "@tresjs/core";
+import { useTexture, useRenderLoop } from "@tresjs/core";
 
 const kaliTexture = await useTexture({
   map: "/cars/mikebirdy.jpg",

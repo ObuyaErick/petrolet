@@ -2,6 +2,7 @@
   <div class="p">
     <div class="">
       <TresCanvas
+        ref="canvasRef"
         window-size
         shadows
         antialias
@@ -32,12 +33,6 @@
           <TresConeGeometry :args="[1, 1.5, 3]" />
           <TresMeshToonMaterial color="#616161" />
         </TresMesh>
-        <TresMesh>
-          <TresTextGeometry
-            :args="['TresJS']"
-            center
-          />
-        </TresMesh>
         <Suspense>
           <PetroletBox></PetroletBox>
         </Suspense>
@@ -58,10 +53,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { TresCanvas, extend } from "@tresjs/core";
+import { TresCanvas } from "@tresjs/core";
 import { OrbitControls } from "@tresjs/cientos";
-// import { TextGeometry } from 'three/addons/geometries/TextGeometry'
-// import { } from "three/addons/geometries"
 
-// extend({ TextGeometry })
+const canvasRef = shallowRef();
+
+onMounted(() => {
+  console.log(canvasRef.value);
+});
 </script>
