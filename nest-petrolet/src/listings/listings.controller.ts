@@ -8,6 +8,10 @@ import {
   Delete,
   Query,
   ParseIntPipe,
+  HttpCode,
+  HttpStatus,
+  ParseUUIDPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { ListingsService } from './listings.service';
 import { CreateListingDto, ListingFilters } from './dto/create-listing.dto';
@@ -23,6 +27,21 @@ export class ListingsController {
   @Post()
   create(@Body() createListingDto: CreateListingDto) {
     return this.listingsService.create(createListingDto);
+  }
+
+  @Get('feed/recents')
+  findRecents() {
+    return this.listingsService.recents();
+  }
+
+  @Get('feed/featured')
+  findFeatured() {
+    return this.listingsService.featured();
+  }
+
+  @Get('feed/popular')
+  findPopular() {
+    return this.listingsService.popular();
   }
 
   @Get()
@@ -81,17 +100,46 @@ export class ListingsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(
+    @Param(
+      'id',
+      new ParseUUIDPipe({
+        exceptionFactory: () =>
+          new BadRequestException('Invalid id format for listing ID'),
+      }),
+    )
+    id: string,
+  ) {
     return this.listingsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateListingDto: UpdateListingDto) {
+  update(
+    @Param(
+      'id',
+      new ParseUUIDPipe({
+        exceptionFactory: () =>
+          new BadRequestException('Invalid id format for listing ID'),
+      }),
+    )
+    id: string,
+    @Body() updateListingDto: UpdateListingDto,
+  ) {
     return this.listingsService.update(id, updateListingDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(
+    @Param(
+      'id',
+      new ParseUUIDPipe({
+        exceptionFactory: () =>
+          new BadRequestException('Invalid id format for listing ID'),
+      }),
+    )
+    id: string,
+  ) {
     return this.listingsService.remove(id);
   }
 }

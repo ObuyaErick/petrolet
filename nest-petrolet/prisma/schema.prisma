@@ -58,7 +58,7 @@ model OneTimePassword {
 }
 
 model Listing {
-  id            String   @id @default(cuid())
+  id            String   @id @default(uuid())
   title         String
   description   String
   price         Float
@@ -69,8 +69,8 @@ model Listing {
   mileage       Int
   fuelType      String
   transmission  String
-  condition     String   // e.g., "New", "Used"
-  color         String
+  condition     String
+  color         String?
 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -80,7 +80,7 @@ model Listing {
 }
 
 model ListingImage {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
 
   url       String
 
@@ -89,7 +89,7 @@ model ListingImage {
 }
 
 model ListingReview {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   content     String
   rating      Int      @default(1) // e.g., 1-5
 
@@ -104,7 +104,7 @@ model ListingReview {
 }
 
 model Seller {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
 
   userId    String    @unique
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -117,7 +117,7 @@ model Seller {
 }
 
 model SellerReview {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   content     String
   rating      Int      @default(1) // e.g., 1-5
 
@@ -132,7 +132,7 @@ model SellerReview {
 }
 
 model SellerProfile {
-  id          String      @id @default(cuid())
+  id          String      @id @default(uuid())
 
   sellerId    String      @unique
   seller      Seller      @relation(fields: [sellerId], references: [id], onDelete: Cascade)

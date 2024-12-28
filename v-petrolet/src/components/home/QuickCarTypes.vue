@@ -46,31 +46,12 @@
             lazy-src="/logo.png"
           ></v-img>
         </SwiperSlide>
-        <template #container-end>
-          <div style="z-index: 9999" class="p-2 flex gap-4">
-            <v-btn size="small" rounded="xl"
-              ><v-icon>mdi-chevron-left</v-icon></v-btn
-            >
-            <v-btn size="small" rounded="xl"
-              ><v-icon>mdi-chevron-right</v-icon></v-btn
-            >
-          </div>
-        </template>
       </Swiper>
     </div>
-
-    <!-- <div class="flex gap-2">
-      <v-carousel cycle hide-delimiter-background :height="400">
-        <v-carousel-item cover class="" v-for="t in filters.Makes.slice(0, 4)">
-          <v-icon>mdi-truck-outline</v-icon>
-          <span>{{ t }}</span>
-        </v-carousel-item>
-      </v-carousel>
-    </div> -->
   </div>
 </template>
 <script setup lang="ts">
-import { carImages, filters } from "@/lib/data";
+import { carImages } from "@/lib/data";
 import {
   EffectCoverflow,
   FreeMode,

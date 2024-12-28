@@ -22,7 +22,7 @@ export default createVuetify({
       light: {
         colors: {
           background: "#f9fafb",
-          primary: colors.yellow.darken3,
+          primary: "#eab308", // colors.yellow.darken3,
           secondary: colors.grey.darken2,
           error: colors.red.darken1,
         },

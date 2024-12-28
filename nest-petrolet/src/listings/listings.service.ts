@@ -8,8 +8,40 @@ import { OrderBy } from 'src/lib/definitions';
 export class ListingsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createListingDto: CreateListingDto) {
-    return 'This action adds a new listing';
+  async create(createListingDto: CreateListingDto) {
+    return await this.prisma.listing.create({
+      data: createListingDto,
+    });
+  }
+
+  async recents() {
+    return await this.prisma.listing.findMany({
+      where: {},
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 7,
+    });
+  }
+
+  async featured() {
+    return await this.prisma.listing.findMany({
+      where: {},
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 7,
+    });
+  }
+
+  async popular() {
+    return await this.prisma.listing.findMany({
+      where: {},
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 7,
+    });
   }
 
   async findAll({
@@ -35,24 +67,26 @@ export class ListingsService {
           updatedAt: 'desc',
         },
         take: pageLimit,
-      })
-    }
+      }),
+    };
   }
 
   async findOne(id: string) {
-    return await this.prisma.user.findUniqueOrThrow({
-      where: {
-        id,
-      },
+    return await this.ensureExistsById(id);
+  }
+
+  async update(id: string, updateListingDto: UpdateListingDto) {
+    return await this.prisma.listing.update({
+      where: { id },
+      data: updateListingDto,
     });
   }
 
-  update(id: string, updateListingDto: UpdateListingDto) {
-    return `This action updates a #${id} listing`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} listing`;
+  async remove(id: string) {
+    await this.prisma.listing.delete({
+      where: { id },
+    });
+    return null;
   }
 
   async ensureExistsById(listingId: string) {

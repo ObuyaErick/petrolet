@@ -25,12 +25,12 @@ import {
   OrbitControls,
   RGBELoader,
 } from "three/examples/jsm/Addons.js";
-import Stats from "three/addons/libs/stats.module.js";
+// import Stats from "three/addons/libs/stats.module.js";
 
 let camera: PerspectiveCamera, scene: Scene, renderer: WebGLRenderer;
 let gridHelper: GridHelper;
 let controls: OrbitControls;
-let stats: Stats;
+// let stats: Stats;
 
 const wheels: (Object3D<Object3DEventMap> | undefined)[] = [];
 
@@ -53,10 +53,6 @@ function init() {
     container.appendChild(renderer.domElement);
 
     window.addEventListener("resize", onWindowResize);
-
-    stats = new Stats();
-    container.appendChild(stats.dom);
-
     //
 
     camera = new PerspectiveCamera(40, offsetWidth / offsetHeight, 0.1, 100);
@@ -69,14 +65,14 @@ function init() {
     controls.update();
 
     scene = new Scene();
-    scene.background = new Color(0x333333);
+    scene.background = new Color(0xf9fafb);
     scene.environment = new RGBELoader().load(
       "/textures/equirectangular/venice_sunset_1k.hdr"
     );
     scene.environment.mapping = EquirectangularReflectionMapping;
-    scene.fog = new Fog(0x333333, 10, 15);
+    scene.fog = new Fog(0xf9fafb, 10, 15);
 
-    gridHelper = new GridHelper(20, 40, 0xffffff, 0xffffff);
+    gridHelper = new GridHelper(20, 40, 0x333333, 0x333333);
     gridHelper.material.opacity = 0.2;
     gridHelper.material.depthWrite = false;
     gridHelper.material.transparent = true;
@@ -84,7 +80,7 @@ function init() {
 
     // Materials
     const bodyMaterial = new MeshPhysicalMaterial({
-      color: 0x000000,
+      color: 0xffffff, // 0xeab308,
       metalness: 1.0,
       roughness: 0.5,
       clearcoat: 1.0,
@@ -92,7 +88,7 @@ function init() {
     });
 
     const detailsMaterial = new MeshStandardMaterial({
-      color: 0xffffff,
+      color: 0xf9fafb,
       metalness: 1.0,
       roughness: 0.5,
     });
@@ -102,27 +98,6 @@ function init() {
       metalness: 0.25,
       roughness: 0,
       transmission: 1.0,
-    });
-
-    const bodyColorInput = document.getElementById(
-      "body-color"
-    ) as HTMLInputElement;
-    bodyColorInput?.addEventListener("input", function () {
-      bodyMaterial.color.set(this.value);
-    });
-
-    const detailsColorInput = document.getElementById(
-      "details-color"
-    ) as HTMLInputElement;
-    detailsColorInput?.addEventListener("input", function () {
-      detailsMaterial.color.set(this.value);
-    });
-
-    const glassColorInput = document.getElementById(
-      "glass-color"
-    ) as HTMLInputElement;
-    glassColorInput?.addEventListener("input", function () {
-      glassMaterial.color.set(this.value);
     });
 
     // Car
@@ -173,12 +148,13 @@ function init() {
 }
 
 function onWindowResize() {
-  if (canvasContainer.value) {
-    const { offsetWidth, offsetHeight } = canvasContainer.value;
+  if (canvasContainer.value && canvasContainer.value.parentElement) {
+    const { offsetWidth, offsetHeight } = canvasContainer.value.parentElement;
+
     camera.aspect = offsetWidth / offsetHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(offsetWidth, offsetHeight);
   }
 }
 
@@ -201,20 +177,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fixed inset-0 flex items-center justify-center">
-    <div class="flex-grow border m-4" ref="canvasContainer"></div>
-    <div
-      class="absolute bottom-4 w-max px-4 py-2 bg-white/10 backdrop-blur rounded-xl flex items-center gap-3"
-    >
-      <span class="flex items-center gap-2 text-white font-mono text-sm"
-        ><input id="body-color" type="color" value="#ff0000" />Body</span
-      >
-      <span class="flex items-center gap-2 text-white font-mono text-sm"
-        ><input id="details-color" type="color" value="#ffffff" />Details</span
-      >
-      <span class="flex items-center gap-2 text-white font-mono text-sm"
-        ><input id="glass-color" type="color" value="#ffffff" />Glass</span
-      >
-    </div>
-  </div>
+  <div class="" ref="canvasContainer"></div>
 </template>

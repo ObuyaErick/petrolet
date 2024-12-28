@@ -5,18 +5,19 @@
         We&apos;re BIG on what matters to you
       </h3>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div
+    <div class="grid grid-cols- gap-4">
+      <v-list-item
+      nav
         class="bg-white rounded-xl p-4 border"
         :key="index"
         v-for="({ title, desc, icon }, index) in values"
       >
-        <div>
-          <v-icon size="large">{{ icon }}</v-icon>
-        </div>
-        <h4 class="my-1">{{ title }}</h4>
+        <template #prepend>
+          <v-icon :size="56">{{ icon }}</v-icon>
+        </template>
+        <v-list-item-title class="my-1">{{ title }}</v-list-item-title>
         <div class="text-secondary">{{ desc }}</div>
-      </div>
+      </v-list-item>
     </div>
   </div>
 </template>

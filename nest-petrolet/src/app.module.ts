@@ -18,6 +18,9 @@ import { AuthenticationGuard } from './auth/authentication/authentication.guard'
 import { RolesModule } from './roles/roles.module';
 import { ListingsModule } from './listings/listings.module';
 import { MpesaModule } from './mpesa/mpesa.module';
+import { PaginationModule } from './pagination/pagination.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { SellersModule } from './sellers/sellers.module';
 
 @Module({
   imports: [
@@ -71,6 +74,9 @@ import { MpesaModule } from './mpesa/mpesa.module';
     RolesModule,
     ListingsModule,
     MpesaModule,
+    PaginationModule,
+    ReviewsModule,
+    SellersModule,
   ],
   controllers: [AppController],
   providers: [
@@ -80,7 +86,7 @@ import { MpesaModule } from './mpesa/mpesa.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    PasswordService,
+    PasswordService
   ],
 })
 export class AppModule {}

@@ -45,6 +45,9 @@ const APIS = {
   },
   "LISTINGS-SHOW": { path: "/listings/:listingId", params: ["listingId"] },
   "LISTINGS-CREATE": { path: "/listings/create" },
+  "LISTINGS-RECENTS": { path: "/listings/feed/recents" },
+  "LISTINGS-FEATURED": { path: "/listings/feed/featured" },
+  "LISTINGS-POPULAR": { path: "/listings/feed/popular" },
 } as const;
 
 // APIS object keys

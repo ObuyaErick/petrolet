@@ -8,10 +8,6 @@ export class KnownPrismaClientRequestErrorFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
-    // console.log(`CODE.......................${exception.name}`, exception.code);
-
-    // console.log(exception);
-
     // Resource not found handler
     if (exception.code === 'P2025') {
       const model = exception.meta?.modelName;
