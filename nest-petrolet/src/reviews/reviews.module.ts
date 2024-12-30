@@ -5,6 +5,7 @@ import { ListingsReviewsController } from './listings.reviews.controller';
 import { SellersReviewsService } from './sellers.reviews.service';
 import { ListingsReviewsService } from './listings.reviews.service';
 import { ListingsService } from 'src/listings/listings.service';
+import { SellersService } from 'src/sellers/sellers.service';
 
 @Module({
   controllers: [SellersReviewsController, ListingsReviewsController],
@@ -13,6 +14,7 @@ import { ListingsService } from 'src/listings/listings.service';
     SellersReviewsService,
     ListingsReviewsService,
     PrismaService,
+    SellersService,
   ],
 })
 export class ReviewsModule {}

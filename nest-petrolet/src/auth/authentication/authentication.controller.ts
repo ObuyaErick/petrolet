@@ -11,7 +11,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { Request as ExpressRequest, Response } from 'express';
-import { Public } from 'src/decorators/route.decorator';
+import { Public } from 'src/decorators/public.decorator';
 import {
   AuthenticatedOtpRequest,
   PasswordResetDto,

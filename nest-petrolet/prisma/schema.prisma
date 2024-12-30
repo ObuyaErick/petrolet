@@ -101,6 +101,8 @@ model ListingReview {
   
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  @@unique([listingId, reviewerId])
 }
 
 model Seller {
@@ -129,6 +131,8 @@ model SellerReview {
   
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  @@unique([sellerId, reviewerId])
 }
 
 model SellerProfile {
@@ -136,6 +140,15 @@ model SellerProfile {
 
   sellerId    String      @unique
   seller      Seller      @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  profileImage   String?     // URL for profile picture
+  bio            String?     // Short description or bio of the seller
+  website        String?     // Seller's website link
+  location       String?     // Location details of the seller
+
+  socialLinks    Json?       // social media links (e.g., { "facebook": "url", "twitter": "url" })
+
+  verified       Boolean     @default(false) // Whether the seller is verified
 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

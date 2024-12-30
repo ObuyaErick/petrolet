@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { IS_PUBLIC_KEY } from 'src/decorators/route.decorator';
+import { IS_PUBLIC_KEY } from 'src/decorators/public.decorator';
 import { UsersService } from 'src/users/users.service';
 import { SESSION_KEY } from './authentication.controller';
 import { Expose } from 'class-transformer';

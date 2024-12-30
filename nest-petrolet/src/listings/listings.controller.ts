@@ -16,7 +16,7 @@ import {
 import { ListingsService } from './listings.service';
 import { CreateListingDto, ListingFilters } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
-import { Public } from 'src/decorators/route.decorator';
+import { Public } from 'src/decorators/public.decorator';
 import { OrderBy } from 'src/lib/definitions';
 
 @Controller('listings')

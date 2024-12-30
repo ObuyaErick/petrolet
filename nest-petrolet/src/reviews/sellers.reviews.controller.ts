@@ -16,10 +16,9 @@ import { Request as ExpressRequest } from 'express';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { CreateSellerReviewDto } from './dto/create-review.dto';
 import { SellersReviewsService } from './sellers.reviews.service';
-import { Public } from 'src/decorators/route.decorator';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('seller-reviews')
-@Public()
 export class SellersReviewsController {
   constructor(private readonly sellersReviewsService: SellersReviewsService) {}
 

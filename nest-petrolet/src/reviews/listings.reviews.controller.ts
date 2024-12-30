@@ -16,7 +16,7 @@ import { Request as ExpressRequest } from 'express';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { CreateListingReviewDto } from './dto/create-review.dto';
 import { ListingsReviewsService } from './listings.reviews.service';
-import { Public } from 'src/decorators/route.decorator';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('listing-reviews')
 export class ListingsReviewsController {

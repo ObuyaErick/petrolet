@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { MpesaService } from './mpesa.service';
-import { Public } from 'src/decorators/route.decorator';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('mpesa')
 @Public()

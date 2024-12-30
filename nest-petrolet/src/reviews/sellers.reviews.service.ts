@@ -3,17 +3,21 @@ import { UpdateReviewDto } from './dto/update-review.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateSellerReviewDto } from './dto/create-review.dto';
 import { Principal } from 'src/auth/authentication/authentication.guard';
+import { SellersService } from 'src/sellers/sellers.service';
 
 @Injectable()
 export class SellersReviewsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly sellersService: SellersService,
+  ) {}
 
   async create(
     createSellerReviewDto: CreateSellerReviewDto,
     loggedInPrincipal: Principal,
   ) {
     // Check if seller exists
-    await this.ensureExistsById(createSellerReviewDto.sellerId);
+    await this.sellersService.ensureExistsById(createSellerReviewDto.sellerId);
 
     return await this.prisma.sellerReview.create({
       data: { ...createSellerReviewDto, reviewerId: loggedInPrincipal.id },
@@ -22,7 +26,7 @@ export class SellersReviewsService {
 
   async findAll(sellerId: string) {
     // Check if seller exists
-    await this.ensureExistsById(sellerId);
+    await this.sellersService.ensureExistsById(sellerId);
 
     return await this.prisma.sellerReview.findMany({
       where: {
