@@ -13,8 +13,8 @@ export class MpesaController {
   }
 
   @Get('stk-push')
-  stkPush() {
-    return this.mpesaService.stkPush({
+  async stkPush() {
+    return await this.mpesaService.stkPush({
       phoneNumber: '254110873314',
       amount: 8000,
     });

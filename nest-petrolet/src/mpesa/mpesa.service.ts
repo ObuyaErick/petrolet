@@ -67,8 +67,8 @@ export class MpesaService {
           {
             BusinessShortCode: 174379,
             Password:
-              'MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjQxMjI0MTMwOTI1',
-            Timestamp: '20241224130925',
+              'MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjQxMjMxMjIwODEy',
+            Timestamp: '20241231220812',
             TransactionType: 'CustomerPayBillOnline',
             Amount: amount,
             PartyA: phoneNumber,
@@ -80,7 +80,7 @@ export class MpesaService {
           },
           {
             headers: {
-              Authorization: 'Bearer SBRuyBHIQKeKYEDAmDetAZfklYRk',
+              Authorization: 'Bearer VXFBNrjnSXcDvGeo8HRyd0evtl1w',
             },
           },
         )
@@ -92,7 +92,10 @@ export class MpesaService {
               ...data,
             };
           }),
-          catchError(() => of(null)),
+          catchError((e) => {
+            console.log(e);
+            return of(null);
+          }),
         ),
     );
   }
@@ -129,7 +132,6 @@ export class MpesaService {
       //   '254757220960',
       //   '254791375587',
       //   '254791676950',
-
     ];
   }
 }
