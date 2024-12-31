@@ -427,6 +427,7 @@
 <script setup lang="ts">
 import {
   initPetroletRange,
+  type DataTableHeader,
   type GroupByItem,
   type PetroletRange,
   type VDataLoaderProps,
@@ -557,7 +558,7 @@ const groups = [
 ];
 const groupBy = ref<GroupByItem[]>([]);
 
-const headers = [
+const headers: DataTableHeader[] = [
   { title: "Title", align: "start", key: "title" },
   { title: "Make", align: "start", key: "make" },
   { title: "Model", align: "start", key: "model" },

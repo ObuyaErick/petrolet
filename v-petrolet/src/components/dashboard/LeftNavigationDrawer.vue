@@ -1,36 +1,51 @@
 <template>
   <v-navigation-drawer
     :class="{
-      'full-width-drawer': isOpen && $vuetify.display.xs,
+      'full-width-drawer': dashboardStore.drawer && $vuetify.display.xs,
     }"
-    @click="emit('toggle-drawer')"
+    @click="dashboardStore.toggleDrawer"
+    :model-value="$vuetify.display.mobile ? dashboardStore.drawer : true"
+    @update:model-value="dashboardStore.toggleDrawer"
   >
     <div class="flex h-full">
       <div class="flex flex-col">
-        <div class="p-3">
-          <v-icon color="primary" icon="$vuetify" size="30"></v-icon>
+        <div class="">
+          <v-avatar class="m-1 pa-0" image="/logo.png" size="48"></v-avatar>
         </div>
 
         <div class="py-1 grid">
-          <v-tooltip
-            :offset="1"
-            v-for="(item, index) in Object.keys(navItems.dynamic)"
-            :key="index"
-          >
+          <v-tooltip :offset="1">
             <template #activator="{ props }">
               <v-btn
                 v-bind="props"
                 class="m-1"
-                @click="tab = item"
-                :icon="navItems.dynamic[item]?.icon"
-                :value="item"
-                :color="tab === item ? 'primary' : undefined"
+                @click="tab = 'Analytics'"
+                icon="mdi-chart-box-multiple-outline"
+                value="analytics"
                 variant="text"
+                to="/dashboard"
               >
               </v-btn>
             </template>
 
-            <span>{{ item }}</span>
+            <span>Analytics</span>
+          </v-tooltip>
+
+          <v-tooltip :offset="1">
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                class="m-1"
+                @click="tab = 'Account'"
+                icon="mdi-account-circle-outline"
+                value="account"
+                variant="text"
+                to="/dashboard/account"
+              >
+              </v-btn>
+            </template>
+
+            <span>Account</span>
           </v-tooltip>
         </div>
         <v-spacer></v-spacer>
@@ -52,7 +67,7 @@
               ><v-spacer> </v-spacer>
               <v-btn
                 v-if="$vuetify.display.xs"
-                @click.stop="emit('toggle-drawer')"
+                @click.stop="dashboardStore.toggleDrawer"
                 variant="tonal"
                 density="comfortable"
                 class="border"
@@ -63,46 +78,85 @@
               ></v-btn>
             </v-list-item-title>
           </v-list-item>
-          <v-list-item
-            v-for="({ title, icon }, index) in navItems.dynamic[tab]?.sub"
-            :key="index"
-            :prepend-icon="icon"
-            :title="title"
-            :value="title"
-            color="primary"
-          ></v-list-item>
+
+          <!-- Sub Nav Items -->
+          <template v-if="tab === 'Analytics'">
+            <v-list-item
+              prepend-icon="mdi-account-outline"
+              title="Profile"
+              value="profile"
+              color="primary"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-cog-outline"
+              title="Sales"
+              value="sales"
+              color="primary"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-lock-reset"
+              title="Site"
+              value="site"
+              color="primary"
+            ></v-list-item>
+          </template>
+          <template v-else-if="tab === 'Account'">
+            <v-list-item
+              prepend-icon="mdi-account-outline"
+              title="Profile"
+              value="profile"
+              color="primary"
+              to="/dashboard/account/profile"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-cog-outline"
+              title="Settings"
+              value="settings"
+              color="primary"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-lock-reset"
+              title="Password Change"
+              value="password-change"
+              color="primary"
+            ></v-list-item>
+          </template>
         </v-list>
 
         <v-spacer></v-spacer>
 
         <v-list class="border-t" nav density="compact">
           <v-list-item
-            v-for="({ title, icon }, index) in navItems.static"
-            :key="index"
-            :title="title"
-            :value="title"
+            prepend-icon="mdi-bell-outline"
+            title="Notifications"
+            value="notifications"
             color="primary"
-            :prepend-icon="icon"
-          >
-          </v-list-item>
+            to="/dashboard/notifications"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-help-circle-outline"
+            title="Support"
+            value="support"
+            color="primary"
+            to="/dashboard/support"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-lock-reset"
+            title="Log out"
+            value="logout"
+            color="primary"
+          ></v-list-item>
         </v-list>
       </div>
     </div>
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
-import { navItems } from "./nav-items";
+import { useDashboardStore } from "@/stores/store.dashboard";
 
-const tab = ref("Account");
+const dashboardStore = useDashboardStore();
 
-defineProps<{
-  isOpen: boolean;
-}>();
-
-const emit = defineEmits<{
-  (e: "toggle-drawer"): void;
-  (e: "sign-out"): void;
-}>();
+const tab = ref<"Analytics" | "Account">("Analytics");
 </script>
 <style lang="css" scoped>
 .full-width-drawer {

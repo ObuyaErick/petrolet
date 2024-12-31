@@ -112,14 +112,14 @@ function init() {
     loader.load("/models/gltf/ferrari.glb", function (gltf) {
       const carModel = gltf.scene.children[0];
 
-      carModel.getObjectByName("body").material = bodyMaterial;
+      (carModel.getObjectByName("body") as Mesh).material = bodyMaterial;
 
-      carModel.getObjectByName("rim_fl").material = detailsMaterial;
-      carModel.getObjectByName("rim_fr").material = detailsMaterial;
-      carModel.getObjectByName("rim_rr").material = detailsMaterial;
-      carModel.getObjectByName("rim_rl").material = detailsMaterial;
+      (carModel.getObjectByName("rim_fl") as Mesh).material = detailsMaterial;
+      (carModel.getObjectByName("rim_fr") as Mesh).material = detailsMaterial;
+      (carModel.getObjectByName("rim_rr") as Mesh).material = detailsMaterial;
+      (carModel.getObjectByName("rim_rl") as Mesh).material = detailsMaterial;
 
-      carModel.getObjectByName("glass").material = glassMaterial;
+      (carModel.getObjectByName("glass") as Mesh).material = glassMaterial;
 
       wheels.push(
         carModel.getObjectByName("wheel_fl"),
@@ -163,7 +163,10 @@ function animate() {
   const time = -performance.now() / 1000;
 
   for (let i = 0; i < wheels.length; i++) {
-    wheels[i].rotation.x = time * Math.PI * 2;
+    const wheel = wheels[i];
+    if (wheel) {
+      wheel.rotation.x = time * Math.PI * 2;
+    }
   }
 
   gridHelper.position.z = -time % 1;

@@ -13,6 +13,7 @@
         </p>
         <div class="flex items-center gap-3">
           <v-btn
+            to="/inventory"
             size="large"
             color="primary"
             append-icon="mdi-arrow-top-right-thin"

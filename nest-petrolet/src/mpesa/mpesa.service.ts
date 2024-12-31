@@ -75,7 +75,7 @@ export class MpesaService {
             PartyB: 174379,
             PhoneNumber: phoneNumber,
             CallBackURL: 'https://mydomain.com/path',
-            AccountReference: 'RANGWENA CLASS OF 2013 : OMERA CHUL URU PESA',
+            AccountReference: 'PETROLET: JACK PAY MONEY ANUS',
             TransactionDesc: 'Contribution towards reunion party',
           },
           {
@@ -119,7 +119,7 @@ export class MpesaService {
       //   '254746402429',
       //   '254713360685',
       //   '254743659271',
-        '254712480148',
+      //   '254712480148',
       //   '254796876692',
       //   '254746170701',
       //   '254715508787',

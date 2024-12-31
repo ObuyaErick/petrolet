@@ -42,7 +42,7 @@
             class="h-full w-full"
             rounded="lg"
             cover
-            :src="`http://localhost:4002/cars/${carImages[i]}`"
+            src="/cars/garvin-st-villier.jpg"
             lazy-src="/logo.png"
           ></v-img>
         </SwiperSlide>

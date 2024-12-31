@@ -1,18 +1,15 @@
 <template>
   <div>
     <div class="grid gap-6">
-      <!-- Header Bar -->
-      <header-bar class="container mx-auto"></header-bar>
-
       <div class="relative">
-        <!-- <ferrari-car class="absolute inset-0 z-10"></ferrari-car> -->
+        <ferrari-car class="absolute inset-0 z-10"></ferrari-car>
 
         <!-- Hero Section -->
         <hero-section class="container mx-auto"></hero-section>
       </div>
 
       <!-- Quick Car Types -->
-      <!-- <quick-car-types class="container mx-auto"></quick-car-types> -->
+      <quick-car-types class="container mx-auto"></quick-car-types>
 
       <!-- OFFSET -->
       <div class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-y-6">
@@ -23,7 +20,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                :src="`http://localhost:4002/cars/${carImages[0]}`"
+                src="/cars/garvin-st-villier.jpg"
               ></v-img>
             </div>
             <div class="h-32 w-[75%]">
@@ -31,7 +28,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                :src="`http://localhost:4002/cars/${carImages[1]}`"
+                src="/cars/garvin-st-villier.jpg"
               ></v-img>
             </div>
           </div>
@@ -41,7 +38,7 @@
                 rounded="xl"
                 cover
                 class="h-full"
-                :src="`http://localhost:4002/cars/${carImages[2]}`"
+                src="/cars/garvin-st-villier.jpg"
               ></v-img>
             </div>
           </div>
@@ -108,9 +105,9 @@
             <v-btn
               rounded="xl"
               size="large"
-              style="text-transform: none"
               append-icon="mdi-arrow-top-right"
               color="primary"
+              class="text-none"
               >Get Started</v-btn
             >
           </div>
@@ -138,13 +135,9 @@
       </div> -->
 
       <div class="container mx-auto p-4">
-        <div class="grid sm:grid-cols-2 gap-6">
-          <v-card
-            elevation="0"
-            rounded="xl"
-            :image="`http://localhost:4002/cars/${carImages[8]}`"
-          >
-            <v-card-text class="text-white pa-12 bg-black/10 backdrop-blur">
+        <div class="grid md:grid-cols-2 gap-6">
+          <v-card elevation="0" rounded="xl">
+            <v-card-text class="pa-12">
               <h3 class="capitalize text-xl font-semibold">
                 Are you looking<br />
                 for a car?
@@ -159,17 +152,15 @@
                   rounded="xl"
                   size="large"
                   variant="tonal"
+                  color="primary"
+                  class="text-none"
                   >Start Exploring</v-btn
                 >
               </div>
             </v-card-text>
           </v-card>
-          <v-card
-            elevation="0"
-            rounded="xl"
-            :image="`http://localhost:4002/cars/${carImages[9]}`"
-          >
-            <v-card-text class="text-white pa-12 bg-black/10 backdrop-blur">
+          <v-card elevation="0" rounded="xl">
+            <v-card-text class="pa-12">
               <h3 class="capitalize text-xl font-semibold">
                 Do you want to<br />
                 sell a car?
@@ -184,6 +175,8 @@
                   rounded="xl"
                   size="large"
                   variant="tonal"
+                  color="success"
+                  class="text-none"
                   >Start Selling Now</v-btn
                 >
               </div>
@@ -195,20 +188,10 @@
       <listings-feed class="container mx-auto" />
 
       <why-choose-us class="container mx-auto" />
+
+      <faq class="container mx-auto"></faq>
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { carImages } from "@/lib/data";
-import { useAppStore } from "@/stores/app";
-
-const appStore = useAppStore();
-
-const dataPoints = {
-  "Cars for sale": "869M",
-  "Dealer reviews": "738M",
-  "Daily Visitors": "100M",
-  "Verified Sellers": "238M",
-};
-</script>
+<script setup lang="ts"></script>
 <style lang="css" scoped></style>

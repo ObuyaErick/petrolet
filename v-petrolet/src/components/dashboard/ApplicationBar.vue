@@ -3,7 +3,7 @@
     <template v-if="$vuetify.display.mobile" #prepend>
       <div class="p-3">
         <v-icon
-          @click="emit('toggle-drawer')"
+          @click="dashboardStore.toggleDrawer"
           color="primary"
           icon="$vuetify"
           size="30"
@@ -13,20 +13,19 @@
 
     <template v-if="$vuetify.display.mobile" #append>
       <v-app-bar-nav-icon
-        @click="emit('toggle-drawer')"
+        @click="dashboardStore.toggleDrawer"
         height="36"
         width="36"
         rounded="lg"
+        icon="mdi-menu-open"
       ></v-app-bar-nav-icon>
     </template>
 
-    <v-app-bar-title>
-      <v-text-field density="comfortable" placeholder="Search" variant="plain">
-        <template #prepend>
-          <div class="h-full"><v-icon size="small">mdi-magnify</v-icon></div>
-        </template>
-      </v-text-field>
-    </v-app-bar-title>
+    <div>
+      <v-btn block class="border text-none ms-3" prepend-icon="mdi-magnify"
+        >Search Ctrl K</v-btn
+      >
+    </div>
 
     <v-spacer></v-spacer>
 
@@ -37,7 +36,7 @@
           density="comfortable"
           size="small"
           class="me-2"
-          variant="tonal"
+          variant="plain"
           icon="mdi-bell-outline"
         ></v-btn>
       </template>
@@ -59,28 +58,34 @@
 
     <v-menu>
       <template #activator="{ props }">
-        <div v-bind="props" class="me-2">
-          <v-avatar
+        <div class="me-2">
+          <v-btn v-bind="props" class="" icon density="comfortable">
+            <v-avatar
+              size="small"
+              image="https://randomuser.me/api/portraits/women/81.jpg"
+            ></v-avatar>
+          </v-btn>
+          <v-btn
+            v-bind="props"
+            icon="mdi-chevron-down"
+            density="compact"
             size="small"
-            image="https://randomuser.me/api/portraits/women/81.jpg"
-          ></v-avatar>
-          <!-- <v-avatar
-            size="small"
-            image="http://localhost:4000/erick.jpg"
-          ></v-avatar> -->
-          <v-icon size="small" class="ms-1">mdi-chevron-down</v-icon>
+            class="ms-1"
+          ></v-btn>
         </div>
       </template>
 
       <v-card rounded="lg" elevation="8">
         <template #title>
-          <v-list-item title="Joe Munyi" subtitle="joemunyi@yahoo.com">
+          <v-list-item
+            :title="`${authStore.initials?.firstName} ${authStore.initials?.lastName}`"
+            :subtitle="authStore.principal?.email"
+          >
             <template #prepend>
               <v-avatar
                 size="small"
                 image="https://randomuser.me/api/portraits/women/81.jpg"
               ></v-avatar>
-              <!-- <v-avatar image="http://localhost:4000/erick.jpg"></v-avatar> -->
             </template>
           </v-list-item>
         </template>
@@ -89,7 +94,8 @@
           <v-list-item
             prepend-icon="mdi-account-details-outline"
             subtitle="View Profile"
-            value="profile"
+            value="/dashboard/account/profile"
+            to="/dashboard/account"
           ></v-list-item>
           <v-list-item
             prepend-icon="mdi-creation-outline"
@@ -100,7 +106,7 @@
           <v-divider></v-divider>
           <v-list-item
             class="mt-2"
-            @click="emit('sign-out')"
+            @click="authStore.signout"
             prepend-icon="mdi-logout"
             subtitle="Logout"
             value="logout"
@@ -111,8 +117,9 @@
   </v-app-bar>
 </template>
 <script setup lang="ts">
-const emit = defineEmits<{
-  (e: "toggle-drawer"): void;
-  (e: "sign-out"): void;
-}>();
+import { useAuthStore } from "@/stores/store.auth";
+import { useDashboardStore } from "@/stores/store.dashboard";
+
+const authStore = useAuthStore();
+const dashboardStore = useDashboardStore();
 </script>

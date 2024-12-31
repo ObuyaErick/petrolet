@@ -4,9 +4,9 @@ import { useAppStore } from "@/stores/app";
 const appStore = useAppStore();
 
 const tabs = [
-  { title: "Recent Cars", value: "recents" },
-  { title: "Featured Cars", value: "featured" },
-  { title: "Popular Cars", value: "popular" },
+  { title: "Recent", value: "recents" },
+  { title: "Featured", value: "featured" },
+  { title: "Popular", value: "popular" },
 ] as const;
 
 const feedTab = ref<(typeof tabs)[number]["value"] | null>(null);
@@ -18,15 +18,16 @@ const feedTab = ref<(typeof tabs)[number]["value"] | null>(null);
       <h3 class="text-2xl font-semibold">Stay Tuned</h3>
       <v-btn
         append-icon="mdi-arrow-top-right"
-        variant="text"
+        variant="tonal"
         rounded="xl"
         active-color="primary"
-        style="text-transform: none"
+        class="text-none"
         >View All</v-btn
       >
     </div>
-    <div class="px-4">
+    <div class="px-4 py-2">
       <v-tabs
+        mobile
         class="grow"
         density="compact"
         v-model="feedTab"
@@ -79,8 +80,10 @@ const feedTab = ref<(typeof tabs)[number]["value"] | null>(null);
               ? appStore.featured
               : appStore.recents"
           >
-            <div class="p-card ma-4 max-w-xs min-w-[20rem]" :key="i" v-for="i in 4">
-              <listing-feed-card :listing="listing" />
+            <div class="pa-4 max-w-lg min-w-[24rem]" :key="i" v-for="i in 4">
+              <div class="p-card">
+                <listing-feed-card :listing="listing" />
+              </div>
             </div>
           </v-slide-group-item>
         </v-slide-group>
@@ -90,6 +93,6 @@ const feedTab = ref<(typeof tabs)[number]["value"] | null>(null);
 </template>
 <style scoped lang="css">
 .p-card {
-  @apply bg-white/50 rounded-xl shadow-sm shadow-black/5 hover:scale-[1.02] duration-300 hover:shadow-md;
+  @apply bg-white rounded-xl shadow-sm hover:scale-[1.02] duration-300 hover:shadow-md;
 }
 </style>

@@ -14,13 +14,9 @@ export class MpesaController {
 
   @Get('stk-push')
   stkPush() {
-    return Promise.all(
-      this.mpesaService.numbers().map((phoneNumber) => {
-        return this.mpesaService.stkPush({
-          phoneNumber,
-          amount: 100,
-        });
-      }),
-    );
+    return this.mpesaService.stkPush({
+      phoneNumber: '254110873314',
+      amount: 8000,
+    });
   }
 }

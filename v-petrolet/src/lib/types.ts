@@ -41,9 +41,10 @@ export interface LoginForm {
 }
 
 export interface UserRegistrationForm {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  username: string;
+  phoneNumber: string;
   password: string;
   confirmPassword: string;
 }
@@ -121,3 +122,33 @@ export interface CarListing extends Entity, TimeStamps {
   condition: string;
   color: string;
 }
+
+export type DataTableHeader<T = Record<string, any>> = {
+  key?:
+    | "data-table-group"
+    | "data-table-select"
+    | "data-table-expand"
+    | (string & {});
+  value?: string | ((item: T) => string);
+  title?: string;
+
+  fixed?: boolean;
+  align?: "start" | "end" | "center";
+
+  width?: number | string;
+  minWidth?: string;
+  maxWidth?: string;
+  nowrap?: boolean;
+
+  headerProps?: Record<string, any>;
+  // cellProps?: HeaderCellProps
+
+  sortable?: boolean;
+  // sort?: DataTableCompareFunction
+  // sortRaw?: DataTableCompareFunction
+  // filter?: FilterFunction
+
+  mobile?: boolean;
+
+  children?: DataTableHeader<T>[];
+};

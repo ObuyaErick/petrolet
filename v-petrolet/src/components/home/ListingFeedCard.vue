@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { carImages } from "@/lib/data";
 import type { CarListing } from "@/lib/types";
 
 defineProps<{
@@ -13,7 +12,7 @@ defineProps<{
       cover
       rounded="lg"
       class="ma-4"
-      :src="`http://localhost:4002/cars/${carImages[9]}`"
+      src="/cars/garvin-st-villier.jpg"
     ></v-img>
     <v-card-title>{{ listing.title }}</v-card-title>
 
@@ -46,10 +45,10 @@ defineProps<{
         <v-spacer></v-spacer>
         <v-btn
           color="primary"
-          density="comfortable"
           variant="text"
           append-icon="mdi-arrow-top-right"
-          >View Details</v-btn
+          class="text-none"
+          >See More</v-btn
         >
       </div>
     </v-card-text>
