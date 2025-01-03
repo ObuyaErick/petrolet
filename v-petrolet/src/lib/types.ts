@@ -43,6 +43,7 @@ export interface LoginForm {
 export interface UserRegistrationForm {
   firstName: string;
   lastName: string;
+  username: string;
   email: string;
   phoneNumber: string;
   password: string;
@@ -102,10 +103,11 @@ export interface GroupByItem {
   key: string;
 }
 
-export interface Paginated {
+export interface Paginated<D> {
   page: number;
   limit: number;
   total: number;
+  data: D[];
 }
 
 export interface CarListing extends Entity, TimeStamps {

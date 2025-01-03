@@ -27,7 +27,7 @@ const APIS = {
   "AUTH-SIGN-IN": { path: "/auth/signin" },
   "AUTH-SIGN-OUT": { path: "/auth/signout" },
   "AUTH-SIGN-UP": {
-    path: "/auth/signup",
+    path: "/users",
   },
   "AUTH-CURRENT-USER": { path: "/auth/current-user" },
   "AUTH-REQUEST-PASSWORD-RESET": { path: "/auth/request-password-reset" },

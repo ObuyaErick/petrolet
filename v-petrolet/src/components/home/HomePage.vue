@@ -2,7 +2,7 @@
   <div>
     <div class="grid gap-6">
       <div class="relative">
-        <ferrari-car class="absolute inset-0 z-10"></ferrari-car>
+        <!-- <ferrari-car class="absolute inset-0 z-10"></ferrari-car> -->
 
         <!-- Hero Section -->
         <hero-section class="container mx-auto"></hero-section>

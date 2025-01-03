@@ -18,7 +18,6 @@ import { AuthenticationGuard } from './auth/authentication/authentication.guard'
 import { RolesModule } from './roles/roles.module';
 import { ListingsModule } from './listings/listings.module';
 import { MpesaModule } from './mpesa/mpesa.module';
-import { PaginationModule } from './pagination/pagination.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { SellersModule } from './sellers/sellers.module';
 import { CaslModule } from './casl/casl.module';
@@ -75,7 +74,6 @@ import { CaslModule } from './casl/casl.module';
     RolesModule,
     ListingsModule,
     MpesaModule,
-    PaginationModule,
     ReviewsModule,
     SellersModule,
     CaslModule,

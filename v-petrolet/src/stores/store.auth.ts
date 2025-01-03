@@ -54,6 +54,26 @@ export const useAuthStore = defineStore("auth", {
         };
       });
     },
+    async checkConflit(
+      field: "username" | "email" | "phoneNumber",
+      value: string
+    ) {
+      if (!value) {
+        return { exists: false };
+      }
+      return await handleRequest<{ exists: boolean }>({
+        func: axios.post,
+        args: [
+          ApiBuilder.getInstance("USER-CHECK-UNIQUE-EXISTENCE").build(),
+          { field, value },
+        ],
+      }).then((res) => {
+        if (res.status === "ok") {
+          return res.result;
+        }
+        return { exists: false };
+      });
+    },
     async fetchCurrentUser() {
       await handleRequest<AuthenticationContext>({
         func: axios.get,

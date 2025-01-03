@@ -1,7 +1,7 @@
 // Utilities
 import useAPI from "@/composables/useAPI";
 import { ApiBuilder } from "@/lib/APIS";
-import type { CarListing } from "@/lib/types";
+import type { CarListing, Paginated } from "@/lib/types";
 import axios from "axios";
 import { defineStore } from "pinia";
 
@@ -11,25 +11,25 @@ export const useAppStore = defineStore("app", {
   state: () => ({
     drawer: null as boolean | null,
     feed: {
-      recents: [],
-      featured: [],
-      popular: [],
-    } as Record<"recents" | "featured" | "popular", CarListing[]>,
+      recents: { data: [], page: 1, limit: 10, total: 0 },
+      featured: { data: [], page: 1, limit: 10, total: 0 },
+      popular: { data: [], page: 1, limit: 10, total: 0 },
+    } as Record<"recents" | "featured" | "popular", Paginated<CarListing>>,
   }),
   getters: {
     recents(state) {
-      return state.feed.recents;
+      return state.feed.recents.data;
     },
     featured(state) {
-      return state.feed.featured;
+      return state.feed.featured.data;
     },
     popular(state) {
-      return state.feed.popular;
+      return state.feed.popular.data;
     },
   },
   actions: {
     async fetchRecents() {
-      const res = await handleRequest<CarListing[]>({
+      const res = await handleRequest<Paginated<CarListing>>({
         func: axios.get,
         args: [ApiBuilder.getInstance("LISTINGS-RECENTS").build()],
       });
@@ -38,7 +38,7 @@ export const useAppStore = defineStore("app", {
       }
     },
     async fetchFeatured() {
-      const res = await handleRequest<CarListing[]>({
+      const res = await handleRequest<Paginated<CarListing>>({
         func: axios.get,
         args: [ApiBuilder.getInstance("LISTINGS-FEATURED").build()],
       });
@@ -47,7 +47,7 @@ export const useAppStore = defineStore("app", {
       }
     },
     async fetchPopular() {
-      const res = await handleRequest<CarListing[]>({
+      const res = await handleRequest<Paginated<CarListing>>({
         func: axios.get,
         args: [ApiBuilder.getInstance("LISTINGS-POPULAR").build()],
       });

@@ -19,7 +19,7 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'last name is required' })
   lastName: string;
 
-  @IsNotEmpty({ message: 'last name is required' })
+  @IsNotEmpty({ message: 'username is required' })
   username: string;
 
   @IsEmail({}, { message: 'invalid email address' })

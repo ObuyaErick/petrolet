@@ -3,6 +3,7 @@ import { CreateListingDto, ListingFilters } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { OrderBy } from 'src/lib/definitions';
+import { ProxyPrismaModel } from 'src/pagination/pagination.types';
 
 @Injectable()
 export class ListingsService {
@@ -15,13 +16,15 @@ export class ListingsService {
   }
 
   async recents() {
-    return await this.prisma.listing.findMany({
-      where: {},
-      orderBy: {
-        updatedAt: 'desc',
-      },
-      take: 7,
-    });
+    return await ProxyPrismaModel(this.prisma.listing).paginate({}, {});
+
+    // .findMany({
+    //   where: {},
+    //   orderBy: {
+    //     updatedAt: 'desc',
+    //   },
+    //   take: 7,
+    // });
   }
 
   async featured() {

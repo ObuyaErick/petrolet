@@ -5,14 +5,19 @@
       v-model="valid"
       validate-on="input lazy"
       @submit.prevent="handleSubmit"
-      class="flex flex-col w-full max-w-sm"
+      class="flex flex-col w-full min-w-[20rem] max-w-sm"
     >
       <RouterLink class="mx-auto" to="/">
-        <v-avatar size="128" image="/logo.png"></v-avatar>
+        <v-icon
+          size="large"
+          color="primary"
+          v-for="(l, i) in 'petrolet'"
+          :key="i"
+          >{{ `mdi-alpha-${l}-box` }}</v-icon
+        >
+        <!-- <v-avatar size="128" image="/logo.png"></v-avatar> -->
       </RouterLink>
-      <h1 class="text-2xl mx-auto">
-        Welcome back to <span class="font-semibold">Petrolet</span>!
-      </h1>
+      <h1 class="text-2xl mx-auto">Welcome back!</h1>
       <h3 class="text-xl mx-auto">Log into your account</h3>
 
       <v-text-field
@@ -22,6 +27,7 @@
         color="primary"
         clearable
         label="Username or Email"
+        flat
         variant="solo"
         v-model="identity"
         :counter="75"
@@ -40,6 +46,7 @@
         color="primary"
         clearable
         label="Password"
+        flat
         variant="solo"
         v-model="password"
         :rules="[(v) => !!v || 'Please enter your password.']"
@@ -61,7 +68,6 @@
       </div>
 
       <v-btn
-        size="large"
         :loading="submitting"
         class="mt-2"
         color="primary"
