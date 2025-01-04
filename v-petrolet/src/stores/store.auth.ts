@@ -50,7 +50,7 @@ export const useAuthStore = defineStore("auth", {
         }
         return {
           status: "error",
-          message: res.errors.message || "Could not sign in.",
+          message: res.errors.message || res.message || "Could not sign in.",
         };
       });
     },

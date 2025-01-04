@@ -4,6 +4,7 @@ import { UpdateListingDto } from './dto/update-listing.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { OrderBy } from 'src/lib/definitions';
 import { ProxyPrismaModel } from 'src/pagination/pagination.types';
+import { orderBy } from 'lodash';
 
 @Injectable()
 export class ListingsService {
@@ -16,35 +17,36 @@ export class ListingsService {
   }
 
   async recents() {
-    return await ProxyPrismaModel(this.prisma.listing).paginate({}, {});
-
-    // .findMany({
-    //   where: {},
-    //   orderBy: {
-    //     updatedAt: 'desc',
-    //   },
-    //   take: 7,
-    // });
+    return await ProxyPrismaModel(this.prisma.listing).paginate(
+      {
+        orderBy: {
+          updatedAt: 'desc',
+        },
+      },
+      { limit: 7 },
+    );
   }
 
   async featured() {
-    return await this.prisma.listing.findMany({
-      where: {},
-      orderBy: {
-        updatedAt: 'desc',
+    return await ProxyPrismaModel(this.prisma.listing).paginate(
+      {
+        orderBy: {
+          updatedAt: 'desc',
+        },
       },
-      take: 7,
-    });
+      { limit: 7 },
+    );
   }
 
   async popular() {
-    return await this.prisma.listing.findMany({
-      where: {},
-      orderBy: {
-        updatedAt: 'desc',
+    return await ProxyPrismaModel(this.prisma.listing).paginate(
+      {
+        orderBy: {
+          updatedAt: 'desc',
+        },
       },
-      take: 7,
-    });
+      { limit: 7 },
+    );
   }
 
   async findAll({

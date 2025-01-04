@@ -3,6 +3,8 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <alerts-host />
   </v-app>
 </template>
 

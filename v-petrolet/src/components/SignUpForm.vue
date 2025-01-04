@@ -350,7 +350,7 @@ const strengthColor = computed(
 
 const handleSubmit = async () => {
   if (valid.value) {
-    const res = await handleRequest<{ detail: string }>({
+    const res = await handleRequest<{ message: string }>({
       func: axios.post,
       args: [
         ApiBuilder.getInstance("AUTH-SIGN-UP").build(),
@@ -371,7 +371,7 @@ const handleSubmit = async () => {
       pushAlert({
         alert: {
           status: "success",
-          message: res.result.detail || "Registration successful.",
+          message: res.result.message || "Registration successful.",
         },
       });
     } else {
@@ -379,7 +379,9 @@ const handleSubmit = async () => {
         alert: {
           status: "error",
           message:
-            res.errors?.detail || "Sorry! An error occured while signing up.",
+            res.errors?.message ||
+            res.message ||
+            "Sorry! An error occured while signing up.",
         },
       });
     }
