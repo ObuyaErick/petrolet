@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { MbinuStoreService } from './mbinu-store.service';
 import { Public } from 'src/decorators/public.decorator';
 
@@ -19,6 +19,21 @@ export class MbinuStoreController {
 
   @Get('list-products/:remark')
   index(@Param('remark') remark: string) {
-    return this.mbinuStoreService.index();
+    return this.mbinuStoreService.index(remark);
+  }
+
+  @Post('complete-profile')
+  completeProfile(@Body() profileCompletionDto: any) {
+    return this.mbinuStoreService.completeProfile(profileCompletionDto);
+  }
+
+  @Get('cart-list')
+  cart() {
+    return this.mbinuStoreService.cart();
+  }
+
+  @Get('products/home-feed')
+  homeFeed() {
+    return this.mbinuStoreService.homeFeed();
   }
 }

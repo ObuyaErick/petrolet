@@ -1,7 +1,4 @@
-import {
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import {
@@ -10,6 +7,7 @@ import {
   PasswordResetRequestDto,
   PublicOtpRequest,
   SignInDto,
+  VerifyLoginDto,
 } from 'src/users/user.dtos';
 import { AuthenticatedUser } from 'src/users/user.authenticated';
 import { MailService } from 'src/mail/mail.service';
@@ -41,6 +39,17 @@ export class AuthenticationService {
     if (!authenticatedUser.verifyPassword(password)) {
       throw new UnauthorizedException('Wrong password');
     }
+
+    const payload = { sub: user.id, email: user.email };
+
+    return {
+      access_token: await this.jwtService.signAsync(payload, {}),
+    };
+  }
+
+  async verifyLogin({ email }: VerifyLoginDto) {
+    const user =
+      await this.usersService.findByUsernameOrEmailOrPhoneNumber(email);
 
     const payload = { sub: user.id, email: user.email };
 

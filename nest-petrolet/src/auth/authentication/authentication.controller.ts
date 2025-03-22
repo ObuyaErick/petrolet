@@ -18,6 +18,7 @@ import {
   PasswordResetRequestDto,
   PublicOtpRequest,
   SignInDto,
+  VerifyLoginDto,
 } from 'src/users/user.dtos';
 import { AuthenticationService } from './authentication.service';
 import { ConfigService } from '@nestjs/config';
@@ -58,6 +59,15 @@ export class AuthenticationController {
     return {
       message: 'Signed in successfully.',
     };
+  }
+
+  @Post('verify-login')
+  @Public()
+  async verifyLogin(
+    @Body()
+    verifyLoginDto: VerifyLoginDto,
+  ) {
+    return await this.authenticationService.verifyLogin(verifyLoginDto);
   }
 
   @Get('current-user')

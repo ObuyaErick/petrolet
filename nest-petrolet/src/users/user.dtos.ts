@@ -56,6 +56,14 @@ export class SignInDto {
   password: string;
 }
 
+export class VerifyLoginDto {
+  @IsNotEmpty()
+  email: string;
+
+  @IsNotEmpty()
+  otp: string;
+}
+
 export class PasswordResetRequestDto extends OmitType(SignInDto, [
   'password',
 ]) {}

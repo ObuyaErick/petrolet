@@ -8,6 +8,6 @@ import { useAuthStore } from "./stores/store.auth";
 const authStore = useAuthStore();
 
 onMounted(async () => {
-  await authStore.fetchCurrentUser();
+  // await authStore.fetchCurrentUser();
 });
 </script>

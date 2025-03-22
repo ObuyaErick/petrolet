@@ -48,6 +48,11 @@ const APIS = {
   "LISTINGS-RECENTS": { path: "/listings/feed/recents" },
   "LISTINGS-FEATURED": { path: "/listings/feed/featured" },
   "LISTINGS-POPULAR": { path: "/listings/feed/popular" },
+
+  // TEST ONLY
+  "TEST-TRX": {
+    path: "http://127.0.0.1:5001/wonderwedding-aa6c3/us-central1/weddingTransactionHistory",
+  },
 } as const;
 
 // APIS object keys

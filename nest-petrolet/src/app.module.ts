@@ -21,6 +21,7 @@ import { MpesaModule } from './mpesa/mpesa.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { SellersModule } from './sellers/sellers.module';
 import { CaslModule } from './casl/casl.module';
+import { MbinuStoreModule } from './mbinu-store/mbinu-store.module';
 
 @Module({
   imports: [
@@ -77,6 +78,7 @@ import { CaslModule } from './casl/casl.module';
     ReviewsModule,
     SellersModule,
     CaslModule,
+    MbinuStoreModule,
   ],
   controllers: [AppController],
   providers: [
@@ -86,7 +88,7 @@ import { CaslModule } from './casl/casl.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    PasswordService
+    PasswordService,
   ],
 })
 export class AppModule {}
