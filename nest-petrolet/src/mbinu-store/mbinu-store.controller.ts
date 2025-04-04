@@ -36,4 +36,9 @@ export class MbinuStoreController {
   homeFeed() {
     return this.mbinuStoreService.homeFeed();
   }
+
+  @Post('code/receive')
+  code(@Body() body: any) {
+    console.log(body);
+  }
 }
