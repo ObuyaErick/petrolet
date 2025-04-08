@@ -22,13 +22,14 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { SellersModule } from './sellers/sellers.module';
 import { CaslModule } from './casl/casl.module';
 import { MbinuStoreModule } from './mbinu-store/mbinu-store.module';
+import { PaystackModule } from './paystack/paystack.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
-      envFilePath: ['.env', '.development.env'],
+      envFilePath: ['.env', '.env.local'],
       cache: true,
       expandVariables: true,
       validationSchema: Joi.object({
@@ -39,6 +40,7 @@ import { MbinuStoreModule } from './mbinu-store/mbinu-store.module';
         JWT_SECRET: Joi.string().required(),
         DATABASE_URL: Joi.string().required(),
         FRONTEND_HOST: Joi.string().required(),
+        LOOPBACK_HOST: Joi.string().required().uri(),
         MAIL_SERVICE: Joi.string().required(),
         MAIL_HOST: Joi.string().required(),
         MAIL_PORT: Joi.number().port().default(465),
@@ -75,6 +77,7 @@ import { MbinuStoreModule } from './mbinu-store/mbinu-store.module';
     RolesModule,
     ListingsModule,
     MpesaModule,
+    PaystackModule,
     ReviewsModule,
     SellersModule,
     CaslModule,
