@@ -154,3 +154,39 @@ export type DataTableHeader<T = Record<string, any>> = {
 
   children?: DataTableHeader<T>[];
 };
+
+export interface PaystackBank {
+  id: number;
+  name: string;
+  slug: string;
+  code: string;
+  longcode: string;
+  gateway: string | null;
+  pay_with_bank: boolean;
+  supports_transfer: boolean;
+  active: boolean;
+  country: string;
+  currency: string;
+  type: string;
+  is_deleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const airtelBank: PaystackBank = {
+  id: 819,
+  name: "Airtel Kenya",
+  slug: "airtel-ke",
+  code: "ATL_KE",
+  longcode: "ATL_KE",
+  gateway: null,
+  pay_with_bank: false,
+  supports_transfer: true,
+  active: true,
+  country: "Kenya",
+  currency: "KES",
+  type: "mobile_money",
+  is_deleted: false,
+  createdAt: "2025-01-17T08:12:11.000Z",
+  updatedAt: "2025-01-17T08:12:11.000Z",
+};
